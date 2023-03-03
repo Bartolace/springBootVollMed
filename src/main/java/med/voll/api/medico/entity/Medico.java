@@ -36,7 +36,6 @@ public class Medico {
         this.endereco = new Endereco(dados.endereco());
 
     }
-
     //@Embedded: anotacao que não precisa criar necessariamente uma tabela no banco de dados, vai se comportar
     // como se estive dentro de Medico mesmo.
     // a classe "integrada" precisa receber a anotacao @Embeddable
