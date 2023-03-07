@@ -6,6 +6,8 @@ import med.voll.api.medico.records.DadosCadastroMedico;
 import med.voll.api.medico.records.DadosListagemMedicos;
 import med.voll.api.medico.repository.MedicoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.*;
 
@@ -25,8 +27,19 @@ public class MedicoController {
     }
 
     @GetMapping
-    public List<DadosListagemMedicos> listar(){
-        return repository.findAll().stream().map(DadosListagemMedicos::new).toList();
+    public Page<DadosListagemMedicos> listar(Pageable paginacao){
+        return repository.findAll(paginacao).map(DadosListagemMedicos::new);
     }
 
 }
+
+/*Trabalhando Pageable/ Page
+* Page:
+*   size=1
+*   page=0
+* Ordenação:
+*   ?sort=nome,desc
+*
+* Exemplo: localhost:8080/medicos?sort=nome,desc
+*
+* */
