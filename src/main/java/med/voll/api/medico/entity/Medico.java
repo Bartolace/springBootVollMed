@@ -6,6 +6,7 @@ import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import med.voll.api.medico.enums.Especialidade;
+import med.voll.api.medico.records.DadosAtualiozacaoMedico;
 import med.voll.api.medico.records.DadosCadastroMedico;
 
 @Table(name = "medicos")
@@ -26,6 +27,8 @@ public class Medico {
     private Especialidade especialidade;
     @Embedded
     private Endereco endereco;
+    private Boolean ativo;
+
 
     public Medico(DadosCadastroMedico dados) {
         this.nome = dados.nome();
@@ -34,7 +37,25 @@ public class Medico {
         this.crm = dados.crm();
         this.especialidade = dados.especialidade();
         this.endereco = new Endereco(dados.endereco());
+        this.ativo = true;
 
+    }
+
+    public void atualizarInformacoes( DadosAtualiozacaoMedico dados){
+        if(dados.nome() != null){
+            this.nome = dados.nome();
+        }
+        if(dados.telefone() != null){
+            this.telefone = dados.telefone();
+        }
+        if(dados.endereco() != null){
+            this.endereco.atualizarInformacoes(dados.endereco());
+        }
+
+    }
+
+    public void excluirLogico() {
+        this.ativo = false;
     }
     //@Embedded: anotacao que não precisa criar necessariamente uma tabela no banco de dados, vai se comportar
     // como se estive dentro de Medico mesmo.
