@@ -1,10 +1,9 @@
-package med.voll.api.paciente.entity;
+package med.voll.api.entity;
 
 import jakarta.persistence.*;
 import lombok.*;
-import med.voll.api.medico.entity.Endereco;
-import med.voll.api.paciente.records.AtualizaDadosPaciente;
-import med.voll.api.paciente.records.DadosCadastroPaciente;
+import med.voll.api.records.paciente.AtualizaDadosPaciente;
+import med.voll.api.records.paciente.DadosCadastroPaciente;
 
 @Table(name = "pacientes")
 @Entity(name = "Paciente")
@@ -30,7 +29,7 @@ public class Paciente {
         this.telefone = dados.telefone();
         this.cpf = dados.cpf();
         this.endereco = new Endereco(dados.endereco());
-        this.ativo = false;
+        this.ativo = true;
     }
 
     public void atualizaPaciente(AtualizaDadosPaciente dados) {

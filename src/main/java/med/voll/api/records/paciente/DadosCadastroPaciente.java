@@ -1,11 +1,11 @@
-package med.voll.api.paciente.records;
+package med.voll.api.records.paciente;
 
 import jakarta.validation.Valid;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Pattern;
-import med.voll.api.medico.records.DadosEndereco;
+import med.voll.api.records.medico.DadosEndereco;
 
 public record DadosCadastroPaciente(
         @NotBlank

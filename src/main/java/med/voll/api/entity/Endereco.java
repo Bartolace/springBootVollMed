@@ -1,11 +1,10 @@
-package med.voll.api.medico.entity;
+package med.voll.api.entity;
 
 import jakarta.persistence.Embeddable;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
-import med.voll.api.medico.records.DadosAtualiozacaoMedico;
-import med.voll.api.medico.records.DadosEndereco;
+import med.voll.api.records.medico.DadosEndereco;
 
 @Embeddable
 @Getter

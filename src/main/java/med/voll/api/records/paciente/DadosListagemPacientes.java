@@ -1,6 +1,6 @@
-package med.voll.api.paciente.records;
+package med.voll.api.records.paciente;
 
-import med.voll.api.paciente.entity.Paciente;
+import med.voll.api.entity.Paciente;
 
 public record DadosListagemPacientes(
         Long id,
