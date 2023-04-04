@@ -28,8 +28,8 @@ public class AutenticacaoController {
     @PostMapping
     public ResponseEntity efetuarLogin(@RequestBody @Valid DadosAutenticacao dados){
         try{
-            var token = new UsernamePasswordAuthenticationToken(dados.login(), dados.senha());
-            var authentication = maneger.authenticate(token);
+            var token = new UsernamePasswordAuthenticationToken(dados.login(), dados.senha());// converte ao DTO do SpringSecurity
+            var authentication = maneger.authenticate(token); // chama o repository
             var tokenJWT = tokenService.gerarToken((Usuario) authentication.getPrincipal());
             return ResponseEntity.ok(new DadosTokenJWT(tokenJWT));
 
