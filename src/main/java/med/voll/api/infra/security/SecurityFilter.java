@@ -31,7 +31,7 @@ public class SecurityFilter extends OncePerRequestFilter {
             var usuario = usuarioRepoitory.findByLogin(subject);
 
             var authentication = new UsernamePasswordAuthenticationToken(usuario, null, usuario.getAuthorities());
-            SecurityContextHolder.getContext().setAuthentication(authentication);
+            SecurityContextHolder.getContext().setAuthentication(authentication); // força autenticacao
         }
         filterChain.doFilter(request, response); //encaminha para o proximo filtro ou fluxo normal -> SecurityFilterChain
     }
