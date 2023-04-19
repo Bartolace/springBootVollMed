@@ -2,6 +2,7 @@ package med.voll.api.entity.consulta.services;
 
 import med.voll.api.entity.Medico;
 import med.voll.api.entity.consulta.Consulta;
+import med.voll.api.entity.consulta.validacoes.ValidadorAgendamentoDeConsulta;
 import med.voll.api.infra.exceptions.ValidacaoException;
 import med.voll.api.records.consulta.DadosAgendamentoConsulta;
 import med.voll.api.repository.ConsultaRepository;
@@ -9,6 +10,8 @@ import med.voll.api.repository.MedicoRepository;
 import med.voll.api.repository.PacienteRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import java.util.List;
 
 @Service
 public class AgendaDeConsultas {
@@ -19,6 +22,9 @@ public class AgendaDeConsultas {
     @Autowired
     private PacienteRepository pacienteRepository;
 
+    @Autowired
+    private List<ValidadorAgendamentoDeConsulta> validadores;
+
     public void agendar(DadosAgendamentoConsulta dados){
         if(!pacienteRepository.existsById(dados.idPaciente())){
             throw new ValidacaoException("Id do paciente informado não existe");
@@ -27,6 +33,8 @@ public class AgendaDeConsultas {
         if(dados.idMedico() != null && !medicoRepository.existsById(dados.idPaciente())){
             throw new ValidacaoException("Id do médico informado não existe");
         }
+
+        validadores.forEach(v -> v.validar(dados));
 
         var paciente = pacienteRepository.findById(dados.idPaciente()).get();
         var medico = escolherMedico(dados);
