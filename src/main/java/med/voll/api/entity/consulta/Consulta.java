@@ -7,6 +7,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import med.voll.api.entity.Medico;
 import med.voll.api.entity.Paciente;
+import med.voll.api.enums.consulta.MotivoCancelamento;
 
 import java.time.LocalDateTime;
 
@@ -30,8 +31,17 @@ public class Consulta {
     private Paciente paciente;
 
     private LocalDateTime data;
+    @Column(name = "motivo_cancelamento")
+    private MotivoCancelamento motivoCancelamento;
 
+    public Consulta(Medico medico, Paciente paciente, LocalDateTime data, MotivoCancelamento motivoCancelamento) {
+        this.medico = medico;
+        this.paciente = paciente;
+        this.data = data;
+        this.motivoCancelamento = motivoCancelamento.NENHUM;
+    }
 
-
-
+    public void cancelar(MotivoCancelamento motivo) {
+        this.motivoCancelamento = motivo;
+    }
 }

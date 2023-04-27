@@ -1,10 +1,9 @@
-package med.voll.api.entity.consulta.validacoes;
+package med.voll.api.entity.consulta.validacoes.agendamento;
 
 import med.voll.api.infra.exceptions.ValidacaoException;
 import med.voll.api.records.consulta.DadosAgendamentoConsulta;
 import org.springframework.stereotype.Component;
 
-import java.time.DayOfWeek;
 import java.time.Duration;
 import java.time.LocalDateTime;
 
