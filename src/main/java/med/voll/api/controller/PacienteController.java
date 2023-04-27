@@ -1,17 +1,16 @@
 package med.voll.api.controller;
 
+import io.swagger.v3.oas.annotations.security.SecurityRequirement;
 import jakarta.validation.Valid;
+import med.voll.api.entity.Paciente;
 import med.voll.api.records.paciente.AtualizaDadosPaciente;
+import med.voll.api.records.paciente.DadosCadastroPaciente;
 import med.voll.api.records.paciente.DadosDetalhamentoPaciente;
 import med.voll.api.records.paciente.DadosListagemPacientes;
 import med.voll.api.repository.PacienteRepository;
-import med.voll.api.records.paciente.DadosCadastroPaciente;
-import med.voll.api.entity.Paciente;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
-import org.springframework.data.domain.Sort;
-import org.springframework.data.web.PageableDefault;
 import org.springframework.http.ResponseEntity;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.*;
@@ -19,6 +18,7 @@ import org.springframework.web.util.UriComponentsBuilder;
 
 @RestController
 @RequestMapping("pacientes")
+@SecurityRequirement(name = "bearer-key")
 public class PacienteController {
     @Autowired
     private PacienteRepository repository;
