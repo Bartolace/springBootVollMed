@@ -1,0 +1,1 @@
+ALTER TABLE consultas CHANGE motivo_cancelamento motivo_cancelamento varchar(100);

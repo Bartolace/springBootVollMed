@@ -38,7 +38,7 @@ public class Consulta {
         this.medico = medico;
         this.paciente = paciente;
         this.data = data;
-        this.motivoCancelamento = motivoCancelamento.NENHUM;
+        this.motivoCancelamento = null;
     }
 
     public void cancelar(MotivoCancelamento motivo) {
